@@ -7,7 +7,7 @@ const handleValidationErrors = async (req: Request, res: Response, next: NextFun
         return res.status(400).json({errors: errors.array()});
     }
     next();
-}
+};
 
 export const validateMyUserRequest = [
     body("name").isString().notEmpty().withMessage("Tên phải là một chuỗi"),
@@ -18,14 +18,14 @@ export const validateMyUserRequest = [
 ];
 
 export const validateMyRestaurantRequest = [
-    body("restaurantName").isString().notEmpty().withMessage("Tên phải là một chuỗi"),
-    body("city").isString().notEmpty().withMessage("Tên thành phố phải là một chuỗi"),
-    body("country").isString().notEmpty().withMessage("Tên quốc gia phải là một chuỗi"),
-    body("delivetyPrice").isFloat({min: 0}).withMessage("Phai nhap gia"),
-    body("estimatedDeliveryTime").isInt({min: 0}).withMessage("Phai nhap so nguyen"),
-    body("cuisines").isArray().withMessage("Phai la mot mang").not().isEmpty().withMessage("Khong duoc de trong"),
-    body("menuItems").isArray().withMessage("khong duoc de trong"),
-    body("menuItems.*.name").notEmpty().withMessage("Khong duoc de trong"), 
-    body("menuItems.*.price").isFloat({min: 0}).withMessage("Phai nhap so"), 
+    body("restaurantName").notEmpty().withMessage("Tên không được để trống"),
+    body("city").notEmpty().withMessage("Tên thành phố không được để trống"),
+    body("country").notEmpty().withMessage("Tên quốc gia không được để trống"),
+    body("deliveryPrice").isFloat({min: 0}).withMessage("Giá giao hàng phải là số dương"),
+    body("estimatedDeliveryTime").isInt({min: 0}).withMessage("Thời gian giao hàng ước tính phải là số nguyên dương"),
+    body("cuisines").isArray().withMessage("Món ăn phải là mảng").not().isEmpty().withMessage("Mảng món ăn không được để trống"),
+    body("menuItems").isArray().withMessage("Các mục menu phải là một mảng"),
+    body("menuItems.*.name").notEmpty().withMessage("Tên mục menu là bắt buộc"), 
+    body("menuItems.*.price").isFloat({min: 0}).withMessage("Giá món ăn trong thực đơn là bắt buộc và phải là số dương"), 
     handleValidationErrors,
 ];
