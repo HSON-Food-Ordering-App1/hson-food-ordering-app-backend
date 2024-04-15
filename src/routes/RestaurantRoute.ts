@@ -6,12 +6,12 @@ const router = express.Router();
 
 // /api/restaurant/ search/london
 router.get(
-  "/search/:city",
-  param("city")
+  "/search/:district",
+  param("district")
     .isString()
     .trim()
     .notEmpty()
-    .withMessage("Tham số thành phố phải là một chuỗi hợp lệ"),
+    .withMessage("Tham số quận/huyện phải là một chuỗi hợp lệ"),
   RestaurantController.searchRestaurant
 );
 

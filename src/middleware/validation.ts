@@ -13,14 +13,14 @@ export const validateMyUserRequest = [
     body("name").isString().notEmpty().withMessage("Tên phải là một chuỗi"),
     body("addressLine1").isString().notEmpty().withMessage("Địa chỉ phải là một chuỗi"),
     body("city").isString().notEmpty().withMessage("Tên thành phố phải là một chuỗi"),
-    body("country").isString().notEmpty().withMessage("Tên quốc gia phải là một chuỗi"),
+    body("district").isString().notEmpty().withMessage("Tên quận/huyện phải là một chuỗi"),
     handleValidationErrors,
 ];
 
 export const validateMyRestaurantRequest = [
     body("restaurantName").notEmpty().withMessage("Tên không được để trống"),
     body("city").notEmpty().withMessage("Tên thành phố không được để trống"),
-    body("country").notEmpty().withMessage("Tên quốc gia không được để trống"),
+    body("district").notEmpty().withMessage("Tên quận/huyện không được để trống"),
     body("deliveryPrice").isFloat({min: 0}).withMessage("Giá giao hàng phải là số dương"),
     body("estimatedDeliveryTime").isInt({min: 0}).withMessage("Thời gian giao hàng ước tính phải là số nguyên dương"),
     body("cuisines").isArray().withMessage("Món ăn phải là mảng").not().isEmpty().withMessage("Mảng món ăn không được để trống"),
