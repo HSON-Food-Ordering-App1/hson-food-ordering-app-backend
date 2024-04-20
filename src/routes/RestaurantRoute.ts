@@ -4,6 +4,15 @@ import RestaurantController from "../controllers/RestaurantController";
 
 const router = express.Router();
 
+router.get(
+  "/:restaurantId",
+  param("restaurantId")
+    .isString()
+    .trim()
+    .notEmpty()
+    .withMessage("Tham số mã nhà hàng phải là một chuỗi hợp lệ"),
+  RestaurantController.getRestaurant
+);
 // /api/restaurant/ search/london
 router.get(
   "/search/:district",
