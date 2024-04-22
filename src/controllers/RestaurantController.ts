@@ -1,25 +1,25 @@
 import { Request, Response } from "express";
 import Restaurant from "../models/restaurant";
 
-const getRestaurant = async (req:Request, res:Response) => {
-  try{
+const getRestaurant = async (req: Request, res: Response) => {
+  try {
     const restaurantId = req.params.restaurantId;
 
     const restaurant = await Restaurant.findById(restaurantId);
-    if(!restaurant){
-      return res.status(404).json({message:"Restaurant not found"});
+    if (!restaurant) {
+      return res.status(404).json({ message: "Restaurant not found" });
     }
 
     res.json(restaurant);
-  }catch(error){
+  } catch (error) {
     console.log(error);
-    res.status(500).json({message: "Server error"});
+    res.status(500).json({ message: "Server error" });
   }
-}
+};
 
 const searchRestaurant = async (req: Request, res: Response) => {
   try {
-    const district = req.params.city;
+    const district = req.params.district;
 
     const searchQuery = (req.query.searchQuery as string) || "";
     const selectedCuisines = (req.query.selectedCuisines as string) || "";
